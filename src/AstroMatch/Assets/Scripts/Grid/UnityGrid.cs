@@ -150,7 +150,7 @@ public class UnityGrid : MonoBehaviour
 
     private IEnumerator CheckForMatches(Vector2 pieceOneLoc, Vector2 pieceTwoLoc)
     {
-        yield return new WaitForSeconds(0.5f); // TODO Magic number! Should be animation length
+        yield return new WaitForSeconds(secondsBeforeCheckForMatch);
         if (Matching.CheckForMatch(ConceptualGrid.PieceArray[(int)pieceOneLoc.x, (int)pieceOneLoc.y], ConceptualGrid.PieceArray, Directions.AllDirections))
         {
             Match(pieceOneLoc);

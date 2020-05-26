@@ -61,16 +61,16 @@ public class Grid
         }
     }
 
-    private void InitializeNormalCells()
+    private void InitializeNormalCells() // Check to make sure we don't lay down a piece that ends in a match
     {
         for (int currentRow = 1; currentRow <= numberOfRows; currentRow++)
         {
             for (int currentColumn = 1; currentColumn <= numberOfColumns; currentColumn++)
             {
                 PieceArray[currentColumn, currentRow] = new SinglePiece(currentColumn, currentRow, false);
-                if (PieceArray[currentColumn, currentRow].PieceType != SinglePieceType.None)
+                if (PieceArray[currentColumn, currentRow].PieceType != SinglePieceType.None) // Make sure we don't hit the outer ring of null pieces
                 {
-                    bool doesSpawnMatch = Matching.CheckInitialMatch(PieceArray[currentColumn, currentRow], PieceArray, Directions.RecursiveDirections);
+                    bool doesSpawnMatch = Matching.CheckInitialMatch(PieceArray[currentColumn, currentRow], PieceArray, Directions.RecursiveDirections); // We only check rescurviely (left, up) as the pieces are being laid from left to right, top to bottom, so no piece to the right and down
                     while (doesSpawnMatch)
                     {
                         PieceArray[currentColumn, currentRow].RandomizeType();
